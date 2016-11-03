@@ -5,3 +5,4 @@ install/
 **/gen
 **/libs
 **/obj
+demos/android-demo/assets/lua/
