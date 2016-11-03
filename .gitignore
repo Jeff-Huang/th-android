@@ -1,4 +1,7 @@
-build/
+**/build
 *~
-external/libpng/build/
 install/
+**/bin
+**/gen
+**/libs
+**/obj
