@@ -64,7 +64,7 @@ cd "$(dirname "$0")" # switch to script directory
 SCRIPT_ROOT_DIR=`pwd`
 export INSTALL_DIR=$SCRIPT_ROOT_DIR/install
 mkdir -p ${INSTALL_DIR}/man
-
+export PREBUILT_TARGET_LIB_DIR="${SCRIPT_ROOT_DIR}/prebuilt"
 echo "INSTALL_DIR=${INSTALL_DIR}"
 set +e # hard errors
 export CMAKE_INSTALL_SUBDIR="share/cmake/torch"
@@ -104,6 +104,7 @@ cmake $1 -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_TOOLCHAIN_FILE="$SCRIPT_ROOT_DIR/cm
     -DLIBRARY_OUTPUT_PATH_ROOT="${INSTALL_DIR}" \
     -DLUAJIT_SYSTEM_MINILUA="$SCRIPT_ROOT_DIR/distro/exe/luajit-rocks/luajit-2.1/src/host/minilua" \
     -DLUAJIT_SYSTEM_BUILDVM="$SCRIPT_ROOT_DIR/distro/exe/luajit-rocks/luajit-2.1/src/host/buildvm" \
+    -DPREBUILT_TARGET_LIB_DIR=${PREBUILT_TARGET_LIB_DIR}
     -DCMAKE_C_FLAGS="-DDISABLE_POSIX_MEMALIGN"
 echo " -------------- Configuring DONE ---------------"
 }

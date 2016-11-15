@@ -38,6 +38,10 @@ cmd:option('-cudnn_benchmark', 0)
 
 
 local function main()
+  local num_threads = torch.getnumthreads()
+  local num_cores = torch.getnumcores()
+  print('num threads=' .. tostring(num_threads) .. ', num cores=' .. tostring(num_cores))
+  
 --   local opt = cmd:parse(arg)
   local opt = {
     model = 'models/instance_norm/candy.t7',
@@ -54,6 +58,7 @@ local function main()
     cudnn_benchmark = 0,
   }
 
+  print('image size=' .. tostring(opt.image_size))
   if (opt.input_image == '') and (opt.input_dir == '') then
     error('Must give exactly one of -input_image or -input_dir')
   end

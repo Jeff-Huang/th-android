@@ -1,5 +1,5 @@
 android update project --path .
-ndk-build
+ndk-build V=1
 if [ $? -ne 0 ]; then
     exit
 fi
