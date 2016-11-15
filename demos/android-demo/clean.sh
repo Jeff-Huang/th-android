@@ -1,2 +1,2 @@
 #!/bin/sh
-rm -fr bin gen lib assets/lua/ assets/lib
+rm -fr bin gen lib assets/lua/ assets/lib libs obj
