@@ -2,13 +2,14 @@ require 'torchandroid'
 require 'torch'
 require 'nn'
 require 'image'
+--require 'nnpack'
 
 require 'ShaveImage'
 require 'TotalVariation'
 require 'InstanceNormalization'
 local utils = require 'utils'
 local preprocess = require 'preprocess'
-
+local nnpack = require 'nnpack'
 
 --[[
 Use a trained feedforward model to stylize either a single image or an entire
@@ -40,7 +41,7 @@ local function main()
 --   local opt = cmd:parse(arg)
   local opt = {
     model = 'models/instance_norm/candy.t7',
-    image_size = 256,
+    image_size = 700,
     median_filter = 3,
     timing = 0,
     input_image = '/sdcard/images/content/chicago.png',
@@ -80,6 +81,8 @@ local function main()
       cudnn.fastest = true
     end
   end
+
+  nnpack.convert(model, nnpack)
 
   local preprocess_method = checkpoint.opt.preprocessing or 'vgg'
   local preprocess = preprocess[preprocess_method]
